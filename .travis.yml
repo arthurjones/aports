@@ -1,12 +1,18 @@
 dist: trusty
 sudo: required
 install:
-  - sudo .travis/install-alpine
-  - sudo .travis/setup-alpine
+- sudo .travis/install-alpine
+- sudo .travis/setup-alpine
 script: |
   source .travis/common.sh
-  #alpine_run $USER .travis/build-pkgs
-  alpine_run $USER .travis/build-pkg
-  sudo find /mnt/alpine -name '*.apk'
+  alpine_run $USER .travis/build-pkgs
 notifications:
   email: false
+deploy:
+  provider: bintray
+  on: fnr
+  file: ".travis/bintray.json"
+  user: arthurjones
+  key:
+    secure: EwTOQXRrvnhMxkkHQygFK2sMVgY/isKYz/imWtJwmghEAwjnt8AdKiIL9yCzOpKeXs+iDoqDxGktqbSqUMXsdjU+sv58enYeJXB8n5FJD/ETfgcwYC/C1EOkUxbj8Xg3FQb+2b75ng7t2kB7i9KNa8+WBo3U7+nIgmnnhJ6GU6i/gmNUAX4tuM5WcBkOY5Ev7Xf7a7pZywOYjrJmDhfHQTz9qoZkJl0b0iXVJaVMOYJaEQXmmIV5LxC978IRgR9Cqm9ZW4XwUZbAWE5bOippA8TuQ1ZFCWy040R7ahV7rDOjXsaICoYVz+fapKZROG//zEAyijM2aVpcwJ/pV7+EqBPonsJHhu2z//UphTJ+kIMExu6e0Z/KFJ7jm+zbM7kCgmqFNdOMwQAmnMI7fHS0a6Xf/r+Y4wbTF+Vk8oKzQ9Yd6IPc+j7DracESp4HlM1JvCnJ2lb33SJ4h9juxvjhE1D71iMnsvpq8h88qk44i8qXiMsxlyhmX1smkeBM4hPk4Oj0eou5Pk1eREvlvWtkVbs1P+WNetB1N/efENt9WTMALEKKspoG+jlecfNyB9fdEdhHyYakcMfJT7cDVaRwCB3BVWscCRbQvxsRRWFpjLesgn3iSOkMQ+G8cv//x0bqEfh3edjXGFD7q6BP//hC39E9erzBm6oEuYuuNHn+RAg=
+  skip_cleanup: true
