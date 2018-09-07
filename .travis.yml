@@ -7,7 +7,6 @@ script: |
   source .travis/common.sh
   alpine_run $USER .travis/build-pkg
   cd /home/travis/build/arthurjones/aports
-  find .
   sudo /bin/sh -c '(cd /mnt/alpine/home/travis && tar cf - packages) | tar xf -'
   sudo chown -R $USER packages
   find packages -name '*.apk' -ls
