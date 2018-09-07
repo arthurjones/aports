@@ -2,7 +2,7 @@
     "package": {
         "name": "auto-upload",
         "repo": "myRepo",
-        "subject": "myBintrayUser",
+        "subject": "arthurjones",
         "desc": "I was pushed completely automatically",
         "website_url": "www.jfrog.com",
         "issue_tracker_url": "https://github.com/bintray/bintray-client-java/issues",
@@ -31,7 +31,7 @@
 
     "files":
         [
-        {"includePattern": "/mnt/alpine/home/travis/packages/*/*/*.apk", "uploadPattern": "$1/$2/$3.apk"}
+        {"includePattern": "./packages/*/*/*.apk", "uploadPattern": "$1/$2/$3.apk"}
         ],
     "publish": true
 }
