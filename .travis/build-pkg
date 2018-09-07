@@ -27,8 +27,8 @@ cd "$CLONE_DIR"
 
 failed_pkgs=''
 successful_pkgs=''
-repo=$1
-pkgname=$2
+repo=main
+pkgname=abuild
 
 qname="$repo/$pkgname"
 
