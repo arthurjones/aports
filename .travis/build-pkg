@@ -1,0 +1,57 @@
+#!/bin/sh
+# vim: set ts=4:
+set -eu
+
+. "$(dirname "$0")"/common.sh
+
+# Replaces /etc/apk/repositories with repositories at $MIRROR_URI that are on
+# the same or higher level than the given repo (main > community > testing)
+# and after that runs `apk update`.
+#
+# $1: the target repository; main, community, or testing
+set_repositories_for() {
+	local target_repo="$1"
+	local repos=''
+
+	local repo; for repo in main community testing; do
+		repos="$repos $MIRROR_URI/$repo"
+		[ "$repo" = "$target_repo" ] && break
+	done
+
+	sudo sh -c "printf '%s\n' $repos > /etc/apk/repositories"
+	sudo apk update
+}
+
+
+cd "$CLONE_DIR"
+
+failed_pkgs=''
+successful_pkgs=''
+repo=$1
+pkgname=$2
+
+qname="$repo/$pkgname"
+
+fold_start "$pkgname" "Building package $qname"
+cd $qname
+
+if abuild -r; then
+	checkapk || :
+	successful_pkgs="$successful_pkgs $qname"
+else
+	failed_pkgs="$failed_pkgs $qname"
+fi
+
+cd - >/dev/null
+fold_end "$pkgname"
+
+printf '\n----\n'
+if [ -n "$successful_pkgs" ]; then
+	print -s1 -c2 "Successfully build packages:$successful_pkgs\n"
+fi
+if [ -n "$failed_pkgs" ]; then
+	die "Failed to build packages:$failed_pkgs"
+
+elif [ -z "$successful_pkgs" ]; then
+	print -s1 -c3 'No packages found to be built.'
+fi

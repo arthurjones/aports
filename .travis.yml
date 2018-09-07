@@ -5,7 +5,8 @@ install:
   - sudo .travis/setup-alpine
 script: |
   source .travis/common.sh
-  alpine_run $USER .travis/build-pkgs
+  #alpine_run $USER .travis/build-pkgs
+  alpine_run $USER .travis/build-pkg testing frr
   sudo find /mnt/alpine/root -name '*.apk'
 notifications:
   email: false
