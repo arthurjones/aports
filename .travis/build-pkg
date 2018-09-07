@@ -28,22 +28,25 @@ cd "$CLONE_DIR"
 failed_pkgs=''
 successful_pkgs=''
 repo=main
-pkgname=abuild
 
-qname="$repo/$pkgname"
+for dir in ${repo}/a*; do
+	pkgname=`basename $dir`
 
-fold_start "$pkgname" "Building package $qname"
-cd $qname
+	qname="$repo/$pkgname"
 
-if abuild -r; then
-	checkapk || :
-	successful_pkgs="$successful_pkgs $qname"
-else
-	failed_pkgs="$failed_pkgs $qname"
-fi
+	fold_start "$pkgname" "Building package $qname"
+	cd $qname
 
-cd - >/dev/null
-fold_end "$pkgname"
+	if abuild -r; then
+		checkapk || :
+		successful_pkgs="$successful_pkgs $qname"
+	else
+		failed_pkgs="$failed_pkgs $qname"
+	fi
+
+	cd - >/dev/null
+	fold_end "$pkgname"
+done
 
 printf '\n----\n'
 if [ -n "$successful_pkgs" ]; then
