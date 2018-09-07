@@ -7,6 +7,6 @@ script: |
   source .travis/common.sh
   #alpine_run $USER .travis/build-pkgs
   alpine_run $USER .travis/build-pkg
-  sudo find /mnt/alpine/root -name '*.apk'
+  sudo find /mnt/alpine -name '*.apk'
 notifications:
   email: false
