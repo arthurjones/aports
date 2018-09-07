@@ -6,5 +6,6 @@ install:
 script: |
   source .travis/common.sh
   alpine_run $USER .travis/build-pkgs
+  find /mnt/alpine -name '*.apk'
 notifications:
   email: false
