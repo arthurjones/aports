@@ -4,10 +4,12 @@ install:
 - sudo .travis/install-alpine
 - sudo .travis/setup-alpine
 script: |
+  pwd
   source .travis/common.sh
   alpine_run $USER .travis/build-pkg
-  sudo /bin/sh -c '(cd /mnt/alpine/home/travis && tar cf - packages) | tar xf -'
-  sudo chown -R $USER packages
+  sudo /bin/sh -c '(cd /mnt/alpine/home/travis && tar cf - packages) | (cd / && tar xf -)'
+  sudo chown -R $USER /packages
+  find /packages -name '*.apk'
 notifications:
   email: false
 deploy:
