@@ -7,8 +7,7 @@ script: |
   source .travis/common.sh
   alpine_run $USER .travis/build-pkg
   cd /home/travis/build/arthurjones/aports
-  sudo /bin/sh -c '(cd /mnt/alpine/home/travis && tar cf - packages) | tar xf -'
-  sudo chown -R $USER packages
+  sudo /bin/sh -c '(cd /mnt/alpine/home/travis && tar cf - packages)' | tar xf -
   find packages -name '*.apk' -ls
 notifications:
   email: false
