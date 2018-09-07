@@ -29,7 +29,7 @@ failed_pkgs=''
 successful_pkgs=''
 repo=main
 
-for dir in ${repo}/a*; do
+for dir in ${repo}/a[a-m]*; do
 	pkgname=`basename $dir`
 
 	qname="$repo/$pkgname"
