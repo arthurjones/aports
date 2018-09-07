@@ -33,6 +33,8 @@ repo=main
 for dir in ${repo}/a[n-z0-9]*; do
 	pkgname=`basename $dir`
 
+	[ "${pkgname}" == "apr" ] && continue
+
 	qname="$repo/$pkgname"
 
 	fold_start "$pkgname" "Building package $qname"
