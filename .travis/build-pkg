@@ -35,6 +35,7 @@ for dir in ${repo}/c[a-m]*; do
 
 	[ "${pkgname}" == "apr" ] && continue
 	[ "${pkgname}" == "boost" ] && continue
+	[ "${pkgname}" == "clang" ] && continue
 
 	qname="$repo/$pkgname"
 
