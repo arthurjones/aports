@@ -30,7 +30,7 @@ successful_pkgs=''
 repo=main
 
 #for dir in ${repo}/a[a-m]*; do
-for dir in ${repo}/b[^a-m]*; do
+for dir in ${repo}/c[a-m]*; do
 	pkgname=`basename $dir`
 
 	[ "${pkgname}" == "apr" ] && continue
