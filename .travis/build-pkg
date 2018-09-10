@@ -70,6 +70,5 @@ elif [ -z "$successful_pkgs" ]; then
 	print -s1 -c3 'No packages found to be built.'
 fi
 
-echo key=$PACKAGER_PRIVKEY
 cat ~/.abuild/abuild.conf
 cat /etc/abuild.conf
