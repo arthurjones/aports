@@ -37,6 +37,7 @@ for dir in ${repo}/e[a-m]*; do
 	[ "${pkgname}" == "clang" ] && continue
 	[ "${pkgname}" == "dovecot" ] && continue
 	[ "${pkgname}" == "elfutils" ] && continue
+	[ "${pkgname}" == "elinks" ] && continue
 	[ "${pkgname}" == "faad2" ] && continue
 	[ "${pkgname}" == "fakeroot" ] && continue
 
