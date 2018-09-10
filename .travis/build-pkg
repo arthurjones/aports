@@ -29,7 +29,7 @@ failed_pkgs=''
 successful_pkgs=''
 repo=main
 
-for dir in ${repo}/g[a-m]*; do
+for dir in ${repo}/abuild; do
 	pkgname=`basename $dir`
 
 	[ "${pkgname}" == "apr" ] && continue
@@ -69,3 +69,7 @@ if [ -n "$failed_pkgs" ]; then
 elif [ -z "$successful_pkgs" ]; then
 	print -s1 -c3 'No packages found to be built.'
 fi
+
+echo key=$PACKAGER_PRIVKEY
+cat ~/.abuild/abuild.conf
+cat /etc/abuild.conf
