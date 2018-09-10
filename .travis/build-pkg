@@ -29,7 +29,7 @@ failed_pkgs=''
 successful_pkgs=''
 repo=main
 
-for dir in ${repo}/d[^a-m]*; do
+for dir in ${repo}/f[a-m]*; do
 	pkgname=`basename $dir`
 
 	[ "${pkgname}" == "apr" ] && continue
@@ -37,6 +37,7 @@ for dir in ${repo}/d[^a-m]*; do
 	[ "${pkgname}" == "clang" ] && continue
 	[ "${pkgname}" == "dovecot" ] && continue
 	[ "${pkgname}" == "faad2" ] && continue
+	[ "${pkgname}" == "fakeroot" ] && continue
 
 	qname="$repo/$pkgname"
 
